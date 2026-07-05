@@ -1,5 +1,5 @@
 # OS
 .DS_Store
 
-# Claude Code local settings (machine-specific)
-.claude/settings.local.json
+# Claude Code local/session config (machine-specific, not project source)
+.claude/
