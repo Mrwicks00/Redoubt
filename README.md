@@ -56,7 +56,13 @@ Epoch length and claim-window duration on this deployment are 300 seconds each â
 
 ### Contracts (`contract/`)
 
-Requires [Foundry](https://book.getfoundry.sh/) with `zama-ai/forge-fhevm` as a dependency (already vendored under `lib/`).
+Requires [Foundry](https://book.getfoundry.sh/) with `zama-ai/forge-fhevm` as a dependency. `lib/forge-fhevm` and `lib/forge-std` are git submodules â€” if you cloned without `--recurse-submodules`, fetch them first:
+
+```bash
+git submodule update --init --recursive
+```
+
+Then:
 
 ```bash
 cd contract
