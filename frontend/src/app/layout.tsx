@@ -1,24 +1,31 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, IBM_Plex_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const displaySerif = Source_Serif_4({
+// Self-hosted (next/font/local) instead of next/font/google: the latter
+// needs a network fetch from Google Fonts at build time, which isn't
+// reliable in every environment this project builds in. Files below are
+// the same latin-subset woff2s next/font/google would have fetched itself.
+const displaySerif = localFont({
+  src: "./fonts/SourceSerif4-Variable.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: "600 700",
 });
 
-const dataMono = IBM_Plex_Mono({
+const dataMono = localFont({
+  src: [
+    { path: "./fonts/IBMPlexMono-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/IBMPlexMono-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/IBMPlexMono-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
-const uiSans = Inter({
+const uiSans = localFont({
+  src: "./fonts/Inter-Variable.woff2",
   variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "400 600",
 });
 
 export const metadata: Metadata = {

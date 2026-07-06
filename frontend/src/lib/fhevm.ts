@@ -1,5 +1,17 @@
 import type { EIP1193Provider } from "viem";
-import { createInstance, initSDK, SepoliaConfig, type FhevmInstance } from "@zama-fhe/relayer-sdk/web";
+import type { FhevmInstance } from "@zama-fhe/relayer-sdk/web";
+
+// Dynamic import (not a static top-level import) is required here: this
+// module is pulled in (transitively, via "use client" components like
+// buy-cover-card.tsx) by server-rendered pages such as app/app/page.tsx.
+// A static import would make Next.js evaluate the SDK's browser-only code
+// (which references the `self` global) during the server prerender pass,
+// crashing with "ReferenceError: self is not defined". A dynamic import
+// inside getFhevmInstance() defers that evaluation to when this function
+// actually runs, which is only ever client-side (wallet-connect flows).
+async function loadSdk() {
+  return import("@zama-fhe/relayer-sdk/web");
+}
 
 // Browser-only counterpart to CLAUDE_HISTORY.md Session 10's Node harness
 // (contract/relayer-scripts/client.js's getFhevmInstance). Two differences
@@ -34,8 +46,9 @@ export function getFhevmInstance(provider: EIP1193Provider): Promise<FhevmInstan
 
   cachedProvider = provider;
   const attempt = (async () => {
+    const sdk = await loadSdk();
     if (!initPromise) {
-      initPromise = initSDK();
+      initPromise = sdk.initSDK();
     }
     try {
       await initPromise;
@@ -46,7 +59,7 @@ export function getFhevmInstance(provider: EIP1193Provider): Promise<FhevmInstan
       initPromise = undefined;
       throw e;
     }
-    return createInstance({ ...SepoliaConfig, network: provider });
+    return sdk.createInstance({ ...sdk.SepoliaConfig, network: provider });
   })();
 
   cachedInstance = attempt;
