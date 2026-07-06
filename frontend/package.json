@@ -12,6 +12,7 @@
     "@base-ui/react": "^1.6.0",
     "@gsap/react": "^2.1.2",
     "@tanstack/react-query": "^5.101.2",
+    "@walletconnect/ethereum-provider": "^2.23.10",
     "@zama-fhe/relayer-sdk": "^0.4.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
