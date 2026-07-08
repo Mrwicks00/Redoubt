@@ -12,8 +12,8 @@ import MockPriceOracleAbi from "./abi/MockPriceOracle.json";
 export const REDOUBT_CHAIN = sepolia;
 
 export const CONTRACTS = {
-  redoubtCoverPool: "0x04f52feb042242Ec4913438988a034D7F4149dB9" as const,
-  mockPriceOracle: "0x98051C5a2dfE791813bC10fd141C9Fa366B3BB1d" as const,
+  redoubtCoverPool: "0xE7A36A094d941533c760C42ACD220e7c614A24C8" as const,
+  mockPriceOracle: "0x73eE9AB3306fb966187c1D440B961e27CeF9e874" as const,
   premiumToken: "0x7c5BF43B851c1dff1a4feE8dB225b87f2C223639" as const, // cUSDCMock, unchanged from session 10
   // USDCMock, the registry pair's underlying token — confirmed session 21 via
   // the wrapper's own `underlying()` getter and independent bytecode/Etherscan
@@ -26,7 +26,7 @@ export const CONTRACTS = {
 // run-latest.json (not guessed) — lets the claim card scan ClaimPaid/
 // ClaimDecryptionAbandoned logs from here instead of genesis, since
 // `claimed` alone can't tell those two outcomes apart (see claim-card.tsx).
-export const REDOUBT_COVER_POOL_DEPLOYMENT_BLOCK = BigInt(11_228_556);
+export const REDOUBT_COVER_POOL_DEPLOYMENT_BLOCK = BigInt(11_228_820);
 
 export const ABIS = {
   redoubtCoverPool: RedoubtCoverPoolAbi,
