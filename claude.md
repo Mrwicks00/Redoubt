@@ -1745,9 +1745,11 @@ price control.**
   a stricter bar than the unconditional case, which only needs the expand
   step itself before the real submit button enables. Confirm/cancel state
   resets on a successful trigger.
-- **Verification:** `npx tsc --noEmit` clean. `npm run build` run this
-  session (see build output for pass/fail — not folded into this entry
-  since it was still running at write time).
+- **Verification:** `npx tsc --noEmit`, `npx eslint`, and `npm run build`
+  all clean on the two changed files. No live wallet/relayer round-trip —
+  same standing limitation as every frontend session since 17; this
+  change has no FHE/decrypt surface anyway (pure UI gating on plain
+  public reads already used elsewhere on this page).
 - **Explicitly out of scope, per this session's brief:** no
   `RedoubtCoverPool.sol` changes, no change to `triggerClaimWindow`'s
   actual on-chain behavior or eligibility — this only surfaces the
